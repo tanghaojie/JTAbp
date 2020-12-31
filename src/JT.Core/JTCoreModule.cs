@@ -9,6 +9,7 @@ namespace JT
         public override void PreInitialize()
         {
             Configuration.Auditing.IsEnabledForAnonymousUsers = true;
+            Configuration.MultiTenancy.IsEnabled = false;
 
             JTLocalizationConfigurer.Configure(Configuration.Localization);
         }

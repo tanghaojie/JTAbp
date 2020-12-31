@@ -5,15 +5,17 @@ using Abp.Reflection.Extensions;
 using JT.Configuration;
 using JT.EntityFrameworkCore;
 using JT.Web.Core;
+using JT.Web.Runtime;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using Microsoft.Extensions.Configuration;
+using System;
 
 namespace JT.Web.Startup
 {
     [DependsOn(
-        typeof(JTApplicationModule), 
-        typeof(JTEntityFrameworkCoreModule), 
+        typeof(JTApplicationModule),
+        typeof(JTEntityFrameworkCoreModule),
         typeof(JTWebCoreModule),
         typeof(AbpAspNetCoreModule))]
     public class JTWebModule : AbpModule
@@ -46,6 +48,7 @@ namespace JT.Web.Startup
         {
             //IocManager.Resolve<ApplicationPartManager>()
             //    .AddApplicationPartsIfNotAddedBefore(typeof(JTWebModule).Assembly);
+            IocManager.Resolve<AppTimes>().StartupTime = DateTime.Now;
         }
     }
 }

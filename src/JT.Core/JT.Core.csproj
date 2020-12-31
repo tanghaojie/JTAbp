@@ -20,6 +20,6 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="5.0.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Abp\Abp\Abp.csproj" />
+    <ProjectReference Include="..\..\JT\JT.Abp.Core\JT.Abp.Core.csproj" />
   </ItemGroup>
 </Project>

@@ -1,19 +1,18 @@
-﻿using System;
-using Abp.AspNetCore;
+﻿using Abp.AspNetCore;
+using Abp.AspNetCore.Mvc.Antiforgery;
 using Abp.Castle.Logging.Log4Net;
 using Abp.EntityFrameworkCore;
-using JT.EntityFrameworkCore;
 using Castle.Facilities.Logging;
+using JT.Configuration;
+using JT.EntityFrameworkCore;
+using JT.Web.Core.StartupConfigurations;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using JT.Web.Core.StartupConfigurations;
-using Microsoft.Extensions.Configuration;
-using JT.Configuration;
-using Abp.AspNetCore.Mvc.Antiforgery;
+using System;
 
 namespace JT.Web.Startup
 {
@@ -36,7 +35,7 @@ namespace JT.Web.Startup
             CorsConfigurer.Configure(services);
             AuthConfigurer.Configure(services, _appConfiguration);
             MvcConfigurer.Configure(services);
-            SwagConfigurer.Configure(services);
+            SwaggerConfigurer.Configure(services, _appConfiguration);
 
             services.AddControllersWithViews(options =>
             {
@@ -73,14 +72,13 @@ namespace JT.Web.Startup
             app.UseStaticFiles();
             app.UseRouting();
 
-
             app.UseJwtTokenMiddleware();
 
             app.UseAuthorization();
 
             CorsConfigurer.Use(app);
             MvcConfigurer.Use(app);
-            SwagConfigurer.Use(app);
+            SwaggerConfigurer.Use(app, _appConfiguration);
 
             app.UseEndpoints(endpoints =>
             {

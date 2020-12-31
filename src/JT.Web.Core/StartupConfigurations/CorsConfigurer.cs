@@ -5,11 +5,13 @@ namespace JT.Web.Core.StartupConfigurations
 {
     public class CorsConfigurer
     {
+        private const string DEFAULT_CORS_POLICY_NAME = "localhost";
+
         public static void Configure(IServiceCollection services)
         {
-            services.AddCors(config =>
+            services.AddCors(options =>
             {
-                config.AddPolicy("policy", builder =>
+                options.AddPolicy(DEFAULT_CORS_POLICY_NAME, builder =>
                 {
                     builder
                     //.AllowAnyOrigin()
@@ -24,7 +26,7 @@ namespace JT.Web.Core.StartupConfigurations
 
         public static void Use(IApplicationBuilder app)
         {
-            app.UseCors("policy");
+            app.UseCors(DEFAULT_CORS_POLICY_NAME);
         }
     }
 }
