@@ -1,5 +1,6 @@
 ﻿using Abp.AspNetCore;
 using Abp.AspNetCore.Configuration;
+using Abp.AutoMapper;
 using Abp.Modules;
 using Abp.Reflection.Extensions;
 using JT.Configuration;
@@ -41,7 +42,11 @@ namespace JT.Web.Startup
 
         public override void Initialize()
         {
-            IocManager.RegisterAssemblyByConvention(typeof(JTWebModule).GetAssembly());
+            var thisAssembly = typeof(JTWebModule).GetAssembly();
+            IocManager.RegisterAssemblyByConvention(thisAssembly);
+            Configuration.Modules.AbpAutoMapper().Configurators.Add(
+               cfg => cfg.AddMaps(thisAssembly)
+           );
         }
 
         public override void PostInitialize()

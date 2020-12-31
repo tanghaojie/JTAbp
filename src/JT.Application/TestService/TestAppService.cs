@@ -10,6 +10,7 @@ namespace JT.TestService
     {
         public TestAppService(IRepository<Test> repository) : base(repository)
         {
+           
         }
 
         protected override IQueryable<Test> CreateFilteredQuery(PagedAndSortedResultRequestDto input)
