@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Abp\Abp.AspNetCore.SignalR\Abp.AspNetCore.SignalR.csproj" />
+    <ProjectReference Include="..\..\Abp\Abp.AspNetCore\Abp.AspNetCore.csproj" />
+    <ProjectReference Include="..\JT.Application\JT.Application.csproj" />
+    <ProjectReference Include="..\JT.EntityFrameworkCore\JT.EntityFrameworkCore.csproj" />
+  </ItemGroup>
+
+</Project>
