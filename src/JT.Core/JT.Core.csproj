@@ -20,6 +20,8 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="5.0.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\JT\JT.Abp.Core\JT.Abp.Core.csproj" />
+    <ProjectReference Include="..\..\Abp\Abp.AutoMapper\Abp.AutoMapper.csproj" />
+    <ProjectReference Include="..\..\JT\JT.Abp.Core\JT.AbpCore.csproj" />
+    <ProjectReference Include="..\..\JT\JT.AbpCore.EntityFrameworkCore\JT.AbpCore.EntityFrameworkCore.csproj" />
   </ItemGroup>
 </Project>

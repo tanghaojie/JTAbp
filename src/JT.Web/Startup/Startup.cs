@@ -1,13 +1,26 @@
 ﻿using Abp.AspNetCore;
 using Abp.AspNetCore.Mvc.Antiforgery;
+using Abp.Authorization;
 using Abp.Castle.Logging.Log4Net;
 using Abp.EntityFrameworkCore;
+using Abp.MultiTenancy;
 using Castle.Facilities.Logging;
+using JT.Abp.Application.Editions;
+using JT.Abp.Authorization;
+using JT.Abp.Authorization.Roles;
+using JT.Abp.Authorization.Users;
+using JT.Abp.Identity;
+using JT.Abp.MultiTenancy;
+using JT.Authorization;
+using JT.Authorization.Roles;
+using JT.Authorization.Users;
 using JT.Configuration;
 using JT.EntityFrameworkCore;
+using JT.MultiTenancy;
 using JT.Web.Core.StartupConfigurations;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -32,6 +45,21 @@ namespace JT.Web.Startup
                 DbContextOptionsConfigurer.Configure(options.DbContextOptions, options.ConnectionString);
             });
 
+            services.AddJTIdentity<Tenant, User, Role>()
+                .AddJTTenantManager<JTTenantManager<Tenant, User>>()
+                .AddJTUserManager<UserManager>()
+                .AddJTRoleManager<RoleManager>()
+                .AddJTEditionManager<JTEditionManager>()
+                .AddJTUserStore<UserStore>()
+                .AddJTUserStore<JTUserStore<Role, User>>()
+                .AddJTRoleStore<RoleStore>()
+                .AddJTLogInManager<JTLogInManager<Tenant, Role, User>>()
+                .AddJTSignInManager<JTSignInManager<Tenant, Role, User>>()
+                .AddJTSecurityStampValidator<JTSecurityStampValidator<Tenant, Role, User>>()
+                .AddJTUserClaimsPrincipalFactory<UserClaimsPrincipalFactory>()
+                .AddJTPermissionChecker<PermissionChecker>()
+                .AddDefaultTokenProviders();
+
             CorsConfigurer.Configure(services);
             AuthConfigurer.Configure(services, _appConfiguration);
             MvcConfigurer.Configure(services);
@@ -55,7 +83,7 @@ namespace JT.Web.Startup
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
-            app.UseAbp(); //Initializes ABP framework.
+            app.UseAbp(options => { options.UseAbpRequestLocalization = false; }); //Initializes ABP framework.
 
             app.UseAuthentication();
 
@@ -72,7 +100,7 @@ namespace JT.Web.Startup
             app.UseStaticFiles();
             app.UseRouting();
 
-            app.UseJwtTokenMiddleware();
+            //app.UseJwtTokenMiddleware();
 
             app.UseAuthorization();
 

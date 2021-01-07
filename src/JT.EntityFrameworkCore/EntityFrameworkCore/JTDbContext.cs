@@ -1,10 +1,14 @@
 ﻿using Abp.EntityFrameworkCore;
+using JT.AbpCore.EntityFrameworkCore.EntityFramework;
+using JT.Authorization.Roles;
+using JT.Authorization.Users;
 using JT.Entities;
+using JT.MultiTenancy;
 using Microsoft.EntityFrameworkCore;
 
 namespace JT.EntityFrameworkCore
 {
-    public class JTDbContext : AbpDbContext
+    public class JTDbContext : JTAbpDbContext<Tenant, Role, User, JTDbContext>
     {
         //Add DbSet properties for your entities...
 

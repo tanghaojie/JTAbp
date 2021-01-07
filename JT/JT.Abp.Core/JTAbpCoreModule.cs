@@ -9,7 +9,7 @@ namespace JT.Abp.Core
     {
         public override void PreInitialize()
         {
-
+            
         }
 
         public override void Initialize()

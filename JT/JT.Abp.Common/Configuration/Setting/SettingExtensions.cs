@@ -1,17 +1,17 @@
 ﻿using Abp.Configuration;
 
-namespace JT.Abp.Common.Configuration
+namespace JT.Abp.Configuration
 {
     internal static class SettingExtensions
     {
-        public static Setting ToSetting(this SettingInfo settingInfo)
+        public static JTSetting ToSetting(this SettingInfo settingInfo)
         {
             return settingInfo == null
                 ? null
-                : new Setting(settingInfo.TenantId, settingInfo.UserId, settingInfo.Name, settingInfo.Value);
+                : new JTSetting(settingInfo.TenantId, settingInfo.UserId, settingInfo.Name, settingInfo.Value);
         }
 
-        public static SettingInfo ToSettingInfo(this Setting setting)
+        public static SettingInfo ToSettingInfo(this JTSetting setting)
         {
             return setting == null
                 ? null

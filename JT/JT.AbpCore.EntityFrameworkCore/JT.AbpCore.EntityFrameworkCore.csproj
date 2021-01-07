@@ -6,7 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Abp\Abp.EntityFrameworkCore\Abp.EntityFrameworkCore.csproj" />
-    <ProjectReference Include="..\JT.Abp.Core\JT.Abp.Core.csproj" />
+    <ProjectReference Include="..\JT.Abp.Core\JT.AbpCore.csproj" />
   </ItemGroup>
 
 </Project>

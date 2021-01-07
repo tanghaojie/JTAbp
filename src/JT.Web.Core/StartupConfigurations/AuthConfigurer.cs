@@ -13,31 +13,35 @@ namespace JT.Web.Core.StartupConfigurations
         {
             if (bool.Parse(configuration["Authentication:JwtBearer:IsEnabled"]))
             {
+                services.Configure<Microsoft.AspNetCore.Identity.SecurityStampValidatorOptions>(o =>
+                {
+                    o.ValidationInterval = TimeSpan.Zero;
+                });
                 services.AddAuthentication(options =>
                 {
                     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
                 })
-                    .AddJwtBearer(options =>
+                .AddJwtBearer(options =>
+                {
+                    options.Audience = configuration["Authentication:JwtBearer:Audience"];
+                    options.TokenValidationParameters = new TokenValidationParameters
                     {
-                        options.Audience = configuration["Authentication:JwtBearer:Audience"];
-                        options.TokenValidationParameters = new TokenValidationParameters
-                        {
-                            ValidateIssuerSigningKey = true,
-                            IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(configuration["Authentication:JwtBearer:SecurityKey"])),
+                        ValidateIssuerSigningKey = true,
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(configuration["Authentication:JwtBearer:SecurityKey"])),
 
-                            ValidateIssuer = true,
-                            ValidIssuer = configuration["Authentication:JwtBearer:Issuer"],
+                        ValidateIssuer = true,
+                        ValidIssuer = configuration["Authentication:JwtBearer:Issuer"],
 
-                            ValidateAudience = true,
-                            ValidAudience = configuration["Authentication:JwtBearer:Audience"],
+                        ValidateAudience = true,
+                        ValidAudience = configuration["Authentication:JwtBearer:Audience"],
 
-                            ValidateLifetime = true,
+                        ValidateLifetime = true,
 
-                            ClockSkew = TimeSpan.Zero
-                        };
-                        options.SaveToken = true;
-                    });
+                        ClockSkew = TimeSpan.Zero
+                    };
+                    options.SaveToken = true;
+                });
 
             }
         }

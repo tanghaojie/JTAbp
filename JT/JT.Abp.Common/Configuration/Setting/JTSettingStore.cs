@@ -6,15 +6,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace JT.Abp.Common.Configuration
+namespace JT.Abp.Configuration
 {
-    public class SettingStore : ISettingStore, ITransientDependency
+    public class JTSettingStore : ISettingStore, ITransientDependency
     {
-        private readonly IRepository<Setting, long> _settingRepository;
+        private readonly IRepository<JTSetting, long> _settingRepository;
         private readonly IUnitOfWorkManager _unitOfWorkManager;
 
-        public SettingStore(
-            IRepository<Setting, long> settingRepository,
+        public JTSettingStore(
+            IRepository<JTSetting, long> settingRepository,
             IUnitOfWorkManager unitOfWorkManager)
         {
             _settingRepository = settingRepository;

@@ -15,10 +15,7 @@ using System;
 namespace JT.Web.Startup
 {
     [DependsOn(
-        typeof(JTApplicationModule),
-        typeof(JTEntityFrameworkCoreModule),
-        typeof(JTWebCoreModule),
-        typeof(AbpAspNetCoreModule))]
+        typeof(JTWebCoreModule))]
     public class JTWebModule : AbpModule
     {
         private readonly IConfigurationRoot _appConfiguration;

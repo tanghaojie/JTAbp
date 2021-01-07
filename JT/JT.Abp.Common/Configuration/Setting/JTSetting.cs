@@ -5,9 +5,9 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace JT.Abp.Common.Configuration
+namespace JT.Abp.Configuration
 {
-    public class Setting : AuditedEntity<long>, IMayHaveTenant
+    public class JTSetting : AuditedEntity<long>, IMayHaveTenant
     {
         public const int MaxNameLength = 256;
 
@@ -21,12 +21,12 @@ namespace JT.Abp.Common.Configuration
 
         public virtual string Value { get; set; }
 
-        public Setting()
+        public JTSetting()
         {
 
         }
 
-        public Setting(int? tenantId, long? userId, string name, string value)
+        public JTSetting(int? tenantId, long? userId, string name, string value)
         {
             TenantId = tenantId;
             UserId = userId;

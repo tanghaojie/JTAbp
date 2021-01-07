@@ -13,6 +13,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using JT.Configuration;
+using JT.Web.Core.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 
 namespace JT.Web.Core
 {
@@ -54,14 +56,14 @@ namespace JT.Web.Core
 
         private void ConfigureTokenAuth()
         {
-            //IocManager.Register<TokenAuthConfiguration>();
-            //var tokenAuthConfig = IocManager.Resolve<TokenAuthConfiguration>();
+            IocManager.Register<TokenAuthConfiguration>();
+            var tokenAuthConfig = IocManager.Resolve<TokenAuthConfiguration>();
 
-            //tokenAuthConfig.SecurityKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_appConfiguration["Authentication:JwtBearer:SecurityKey"]));
-            //tokenAuthConfig.Issuer = _appConfiguration["Authentication:JwtBearer:Issuer"];
-            //tokenAuthConfig.Audience = _appConfiguration["Authentication:JwtBearer:Audience"];
-            //tokenAuthConfig.SigningCredentials = new SigningCredentials(tokenAuthConfig.SecurityKey, SecurityAlgorithms.HmacSha256);
-            //tokenAuthConfig.Expiration = TimeSpan.FromDays(1);
+            tokenAuthConfig.SecurityKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_appConfiguration["Authentication:JwtBearer:SecurityKey"]));
+            tokenAuthConfig.Issuer = _appConfiguration["Authentication:JwtBearer:Issuer"];
+            tokenAuthConfig.Audience = _appConfiguration["Authentication:JwtBearer:Audience"];
+            tokenAuthConfig.SigningCredentials = new SigningCredentials(tokenAuthConfig.SecurityKey, SecurityAlgorithms.HmacSha256);
+            tokenAuthConfig.Expiration = TimeSpan.FromHours(double.Parse(_appConfiguration["Authentication:JwtBearer:ExpireInHour"]));
         }
 
         public override void Initialize()

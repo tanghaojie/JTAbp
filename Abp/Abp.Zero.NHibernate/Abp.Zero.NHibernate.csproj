@@ -20,7 +20,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Abp.FluentMigrator\Abp.FluentMigrator.csproj" />
-    <ProjectReference Include="..\Abp.NHibernate\Abp.NHibernate.csproj" />
     <ProjectReference Include="..\Abp.Zero\Abp.Zero.csproj" />
   </ItemGroup>
 

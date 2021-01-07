@@ -20,12 +20,11 @@
     <None Remove="Migrations\**" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\20201231030648_init.cs" />
-    <Compile Include="Migrations\20201231030648_init.Designer.cs" />
+    <Compile Include="Migrations\20210106022649_init.cs" />
+    <Compile Include="Migrations\20210106022649_init.Designer.cs" />
     <Compile Include="Migrations\JTDbContextModelSnapshot.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Abp\Abp.EntityFrameworkCore\Abp.EntityFrameworkCore.csproj" />
     <ProjectReference Include="..\JT.Core\JT.Core.csproj" />
   </ItemGroup>
   <ItemGroup>

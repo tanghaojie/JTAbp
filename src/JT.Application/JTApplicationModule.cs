@@ -1,6 +1,7 @@
 ﻿using Abp.AutoMapper;
 using Abp.Modules;
 using Abp.Reflection.Extensions;
+using JT.Authorization;
 
 namespace JT
 {
@@ -9,6 +10,10 @@ namespace JT
         typeof(AbpAutoMapperModule))]
     public class JTApplicationModule : AbpModule
     {
+        public override void PostInitialize()
+        {
+           
+        }
         public override void Initialize()
         {
             var thisAssembly = typeof(JTApplicationModule).GetAssembly();

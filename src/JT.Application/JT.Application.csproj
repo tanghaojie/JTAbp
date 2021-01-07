@@ -11,8 +11,10 @@
     <RootNamespace>JT</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Abp\Abp.AutoMapper\Abp.AutoMapper.csproj" />
-    <ProjectReference Include="..\..\Abp\Abp.EntityFrameworkCore\Abp.EntityFrameworkCore.csproj" />
     <ProjectReference Include="..\JT.Core\JT.Core.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="RoleService\" />
+    <Folder Include="UserService\Dto\" />
   </ItemGroup>
 </Project>
